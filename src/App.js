@@ -22,20 +22,12 @@ class App extends Component {
 }
 
 
-
-
   initGame = () => {
     this.setState({ grid: this.buildGrid() }, () => {
       this.generatePiece()
                                                                                // console.log("build grid end")
     })                                                                                       // on doit creer le composant qui vient d'etre creer  grid.jsx
   }
-
-
-
-
-
- 
 
 
 
@@ -50,8 +42,13 @@ class App extends Component {
       grid.push(line)
     }
                                                                                // pour faire un test je vais modifier la grille apres avoir creer la fonction de deplacement dans la grille 
-grid[0][0]=4 
- // avec ce resultat on devrait avoir un retour false car la valeur est strictement superieur a 1  
+
+// grid[0][0]=1
+// grid[0][1]=1
+// grid[0][2]=1
+// grid[0][3]=1 permet d'identifier si la piece peut etre placer
+
+                                                                               // avec ce resultat on devrait avoir un retour false car la valeur est strictement superieur a 1  
     return grid
   }
 
@@ -68,11 +65,16 @@ grid[0][0]=4
                                                                                         // je fais appel a cette methode pour voir si la piece peu bouger en appelant une variable resultat
     let result = this.pieceCanBeMove(piece)
     console.log(result)
+
                                                                                  // Tetrominos[0]
-                                                                                               // ceci est une grille internet a la piece il ne faut pas confondre avec la grille principal GRID
+                                                                                 // ceci est une grille internet a la piece il ne faut pas confondre avec la grille principal GRID
                                                                                             //la fonction recupere la premiere clef
                                                                                                   // console.log(piece)
+  if (result ){
+    this.setState({piece})
+  }                                                                                                
   }
+  
 //            axe 
 
   //      [0, 0, 1],
@@ -109,7 +111,10 @@ grid[0][0]=4
         <h1>TETRIS</h1>
         {
                                                                                        // ici on conditionne l'affichage
-          this.state.grid !== null && <Grid grid={this.state.grid} />
+          this.state.grid !== null && <Grid 
+          grid={this.state.grid} 
+          piece={this.state.piece }/>
+          // on generer la piece a ce niveau pour la recupere en parametre de notre grid (props)
         }
       </div>
     )
