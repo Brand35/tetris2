@@ -1,0 +1,88 @@
+/* StartMenu.scss */
+.start-menu-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 52px;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-options {
+  display: flex;
+  width: 25%;
+  height: 70%;
+  padding: 73px 50px;
+  flex-direction: column;
+  align-items: center;
+  gap: 39px;
+  /* flex-shrink: 0; */
+  border-radius: 30px;
+  /* border: 1px solid; */
+}
+
+.menu-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.menu-button {
+  display: flex;
+  width: 290px;
+  height: 45px;
+  border-radius: 30px;
+  /* flex-direction: column; */
+  justify-content: center;
+  text-align: center;
+  font-family: "Anek Gujarati";
+  font-size: 140%;
+  line-height: 30px;
+  letter-spacing: 1.25px;
+}
+
+.game-rules {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 41%;
+  height: 72%;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+.rules-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+}
+
+.game-rules h2 {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.game-rules p {
+  font-family: Arapey;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  /* 125% */
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.home-button {
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
