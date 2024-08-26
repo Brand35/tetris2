@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { randomTetromino, TETROMINOS } from "../pieces/pieces";
 import NextPiece from "../displayNextPiece/displayNextPiece";
 import OptionsMenu from "../OptionMenu/OptionMenu";
-import "./Tetris.scss";
 import "./Grid.scss";
 
 const Grid = ({ onHome }) => {

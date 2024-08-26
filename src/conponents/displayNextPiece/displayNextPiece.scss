@@ -1,22 +1,52 @@
 .next-piece {
-    position: absolute;
-    top: 80px; /* Ajustez cette valeur pour la distance du haut */
-    right: -120px; /* Ajustez cette valeur pour la distance du bord droit */
-    /* Fixez cette valeur selon la largeur du conteneur de la grille pour éviter qu'il dépasse */
-    z-index: 10;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    background: black;
-  }
-  
-  
-  .grid-row {
-    display: flex;
-  }
-  
-  .grid-cell {
+  position: absolute;
+  top: 80px;
+  /* Ajustez cette valeur pour la distance du haut */
+  right: -120px;
+  /* Ajustez cette valeur pour la distance du bord droit */
+  /* Fixez cette valeur selon la largeur du conteneur de la grille pour éviter qu'il dépasse */
+  z-index: 10;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background: black;
+}
 
-    width: 20px;
-    height: 20px;
-  }
+.grid-row {
+  display: flex;
+}
+
+.grid-cell {
+  flex: 1;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}
+$tetrimino-colors: (
+  'I': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
+  'J': radial-gradient(50% 50% at 50% 50%, #D7C17A 0%, #9B8A53 100%),
+  'L': radial-gradient(50% 50% at 50% 50%, #FF0006 0%, #FF6D7A 100%),
+  'O': radial-gradient(50% 50% at 50% 50%, #E71DA4 0%, #A21171 100%),
+  'S': radial-gradient(50% 50% at 50% 50%, #1DB4F3 0.01%, #097AA9 100%),
+  'T': radial-gradient(50% 50% at 50% 50%, #B4B4B4 0%, #808080 100%),
+  'Z': radial-gradient(50% 50% at 50% 50%, #E3AF0B 0%, #9E7905 100%),
+  '0': rgba(255, 255, 255, 0) // Case vide
+);
+
+// Fonction pour obtenir la couleur d'un Tetrimino
+@function tetrimino-color($tetrimino) {
+  @return map-get($tetrimino-colors, $tetrimino);
+}
+// Utilisation des couleurs dans le style des cellules
+.grid-cell {
+  // On suppose qu'une classe ou une propriété pour chaque Tetrimino
+  &.I { background: tetrimino-color('I'); }
+  &.J { background: tetrimino-color('J'); }
+  &.L { background: tetrimino-color('L'); }
+  &.O { background: tetrimino-color('O'); }
+  &.S { background: tetrimino-color('S'); }
+  &.T { background: tetrimino-color('T'); }
+  &.Z { background: tetrimino-color('Z'); }
+}
+
+
