@@ -1,19 +1,17 @@
 import React from "react";
 import "./StartMenu.scss";
+import title from '../asset/title.jpg';
 
-const StartMenu = ({ onStart, onOptions, onAccessibility, onHome }) => {
+const StartMenu = ({ onStart, onOptions }) => {
   return (
     <div className="start-menu-container">
       <div className="menu-options">
-        <h1 className="menu-title">Tetris</h1>
+      <img className='title' src={title} alt="" />
         <button className="menu-button" onClick={onStart}>
           Start
         </button>
         <button className="menu-button" onClick={onOptions}>
           Options
-        </button>
-        <button className="menu-button" onClick={onAccessibility}>
-          Accessibilité
         </button>
       </div>
       <div className="game-rules">
@@ -26,7 +24,12 @@ const StartMenu = ({ onStart, onOptions, onAccessibility, onHome }) => {
             complétées disparaissent tout en rapportant des points et le joueur
             peut de nouveau remplir les cases libérées
           </p>
+          <kbd>
+            <kbd>ArrowRight</kbd> / <kbd>ArrowLeft</kbd> : Déplacer la pièce
+            <kbd></kbd>
+          </kbd>
         </div>
+
       </div>
     </div>
   );

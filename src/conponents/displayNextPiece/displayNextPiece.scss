@@ -23,13 +23,13 @@
   background-color: transparent;
 }
 $tetrimino-colors: (
-  'I': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-  'J': radial-gradient(50% 50% at 50% 50%, #D7C17A 0%, #9B8A53 100%),
-  'L': radial-gradient(50% 50% at 50% 50%, #FF0006 0%, #FF6D7A 100%),
-  'O': radial-gradient(50% 50% at 50% 50%, #E71DA4 0%, #A21171 100%),
-  'S': radial-gradient(50% 50% at 50% 50%, #1DB4F3 0.01%, #097AA9 100%),
-  'T': radial-gradient(50% 50% at 50% 50%, #B4B4B4 0%, #808080 100%),
-  'Z': radial-gradient(50% 50% at 50% 50%, #E3AF0B 0%, #9E7905 100%),
+  'I': #05c0ea,
+  'J': #adef80,
+  'L': #f3b31b,
+  'O': #de1c73,
+  'S': #40b62c,
+  'T': #c34bde,
+  'Z': #a4acc7,
   '0': rgba(255, 255, 255, 0) // Case vide
 );
 

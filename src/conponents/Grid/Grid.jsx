@@ -20,8 +20,51 @@ const Grid = ({ onHome }) => {
     x: Math.floor(cols / 2) - 1,
     y: 0,
   });
+  let startX, startY, distX, distY;
   const [isPaused, setIsPaused] = useState(false); // État de pause
+  const handleTouchStart = (e) => {
+    const touchObj = e.changedTouches[0];
+    startX = touchObj.pageX;
+    startY = touchObj.pageY;
+  };
 
+  const handleTouchMove = (e) => {
+    e.preventDefault();
+  };
+
+  const handleTouchEnd = (e) => {
+    const touchObj = e.changedTouches[0];
+    distX = touchObj.pageX - startX;
+    distY = touchObj.pageY - startY;
+
+    if (Math.abs(distX) > Math.abs(distY)) {
+      // Déplacement horizontal
+      if (distX > 0) {
+        movePiece(1); // Déplacement à droite
+      } else {
+        movePiece(-1); // Déplacement à gauche
+      }
+    } else {
+      // Déplacement vertical
+      if (distY > 0) {
+        dropPiece(); // Descendre la pièce
+      } else {
+        rotatePieceInGrid(); // Rotation de la pièce
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchmove", handleTouchMove);
+    document.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [currentPiece, grid]);
   function createEmptyGrid() {
     return Array.from({ length: rows }, () => Array(cols).fill(0));
   }
@@ -227,6 +270,7 @@ const Grid = ({ onHome }) => {
     setGameOver(false);
     resetPiece();
   };
+ 
   return (
     <div className="tetris-container">
       <button className="home-button" onClick={onHome}>
