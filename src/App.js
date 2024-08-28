@@ -3,12 +3,11 @@ import "./App.scss";
 import Grid from "./conponents/Grid/Grid";
 import StartMenu from "./conponents/StartMenu/StartMenu";
 import OptionsMenu from "./conponents/OptionMenu/OptionMenu";
-const audio = new Audio("/audio/tetris-theme.mp3");
-audio.loop = true;
+
 
 function App() {
+  
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
   const [currentMenu, setCurrentMenu] = useState("start");
   const [activeTheme, setActiveTheme] = useState("default");
 
@@ -16,7 +15,7 @@ function App() {
     default: {
       backgroundStyle: {
         background:
-          "radial-gradient(50% 50% at 50% 50%, #1EE682 0%, #0CA759 100%)",
+          "radial-gradient(50% 50% at 50% 50%, #1DB4F3 0.01%, #097AA9 100%)",
       },
     },
     theme1: {
@@ -28,29 +27,16 @@ function App() {
     theme2: {
       backgroundStyle: {
         background:
-          "radial-gradient(50% 50% at 50% 50%, #1EE682 0%, #0CA759 100%)",
+          "radial-gradient(50% 50% at 50% 50%, #E71DA4 0%, #A21171 100%)",
       },
     },
     // Ajoutez plus de thèmes ici
   };
 
-  useEffect(() => {
-    if (isMusicPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-
-    return () => {
-      audio.pause();
-    };
-  }, [isMusicPlaying]);
   const handleThemeToggle = (theme) => {
     setActiveTheme(theme);
   };
-  const handleMusicToggle = () => {
-    setIsMusicPlaying(!isMusicPlaying);
-  };
+
 
   const handleStart = () => {
     setIsGameStarted(true);
@@ -81,8 +67,6 @@ function App() {
           )}
           {currentMenu === "options" && (
             <OptionsMenu
-              isMusicPlaying={isMusicPlaying}
-              onMusicToggle={handleMusicToggle}
               onHome={handleHome}
               activeTheme={activeTheme}
               onThemeToggle={handleThemeToggle}

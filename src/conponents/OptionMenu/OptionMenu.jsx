@@ -11,18 +11,6 @@ const OptionsMenu = ({
 }) => {
   return (
     <div className="options-menu">
-      <div className="option-container">
-        <h2>Options</h2>
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={isMusicPlaying}
-            onChange={onMusicToggle}
-          />
-          <span className="slider round"></span>
-        </label>
-        <span>{isMusicPlaying ? "Music On" : "Music Off"}</span>
-      </div>
       <div className="theme-options">
         <h3>Choose Theme</h3>
         {Object.keys(themes).map((theme) => (
@@ -37,7 +25,7 @@ const OptionsMenu = ({
             </label>
             <span>{theme}</span>
           </div>
-           ))}
+        ))}
       </div>
       <button className="home-button" onClick={onHome}>
         Home

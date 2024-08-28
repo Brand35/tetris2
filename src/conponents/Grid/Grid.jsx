@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { randomTetromino, TETROMINOS } from "../pieces/pieces";
 import NextPiece from "../displayNextPiece/displayNextPiece";
-import OptionsMenu from "../OptionMenu/OptionMenu";
 import "./Grid.scss";
 
-const Grid = ({ onHome }) => {
+const Grid = ({ onHome,tetriminocolor }) => {
   const rows = 20;
   const cols = 10;
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [audio] = useState(new Audio("/audio/tetris-theme.mp3"));
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [grid, setGrid] = useState(createEmptyGrid());
@@ -303,7 +300,7 @@ const Grid = ({ onHome }) => {
                       backgroundColor:
                         cell !== 0
                           ? `rgba(${TETROMINOS[cell].color}, 0.8)`
-                          : "",
+                          : "none",
                     }}
                   ></div>
                 ))}
