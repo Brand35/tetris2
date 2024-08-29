@@ -7,11 +7,7 @@
     justify-content: center;
     align-items: center;
 }
-h2{
-    font-size: 1.5rem;
-    text-align: center;
-    
-}
+
 
 .option-container .theme-option {
     height: 70%;
@@ -19,11 +15,11 @@ h2{
     flex-direction: column;
     display: flex;
     border-radius: 30px;
-    border: 1px solid var(--Schemes-Scrim, #000);
+    // border: 1px solid var(--Schemes-Scrim, #000);
     // background: rgba(255, 255, 255, 0.47);
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .switch {
@@ -68,69 +64,22 @@ h2{
 //     // background-color: #2196F3;
 // }
 
-input:checked+.slider:before {
-    transform: translateX(26px);
-}
+// input:checked+.slider:before {
+//     transform: translateX(26px);
+// }
 
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
+// /* Rounded sliders */
+// .slider.round {
+//     border-radius: 34px;
+// }
 
-.slider.round:before {
-    border-radius: 50%;
-}
+// .slider.round:before {
+//     border-radius: 50%;
+// }
 
-  
-  .theme-option label {
-    margin-left: 10px; /* Espace entre le switch et le label du thème */
-  }
-  .theme2 {
-    background: radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%);
-    $tetrimino-colors: (
-        'I': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'J': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'L': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'O': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'S': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'T': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        'Z': radial-gradient(50% 50% at 50% 50%, #B20036 0%, #E67899 100%),
-        '0': rgba(255, 255, 255, 0) // Case vide
-      );
-  }
-  // 
-//   /* Thème clair */
-//   .theme-light .slider {
-//     background-color: #f3f4f6; /* Couleur de fond lorsque désactivé */
-//   }
-  
-//   .theme-light input:checked + .slider {
-//     background-color: #ffcc00; /* Couleur du slider lorsqu'il est activé */
-//   }
-  
-//   /* Thème sombre */
-//   .theme-dark .slider {
-//     background-color: #374151; /* Couleur de fond lorsque désactivé */
-//   }
-  
-//   .theme-dark input:checked + .slider {
-//     background-color: #1f2937; /* Couleur du slider lorsqu'il est activé */
-//   }
-  
-//   /* Thème Matrix (par exemple) */
-//   .theme-matrix .slider {
-//     background-color: #004400; /* Couleur de fond lorsque désactivé */
-//   }
-  
-//   .theme-matrix input:checked + .slider {
-//     background-color: #00ff00; /* Couleur du slider lorsqu'il est activé */
-//   }
-  
-//   /* Exemple pour un thème personnalisé (ajoutez autant de thèmes que nécessaire) */
-//   .theme-custom .slider {
-//     background-color: #000066; /* Couleur de fond lorsque désactivé */
-//   }
-  
-//   .theme-custom input:checked + .slider {
-//     background-color: #6600ff; /* Couleur du slider lorsqu'il est activé */
-//   }
+
+// .theme-option label {
+//     margin-left: 10px;
+//     /* Espace entre le switch et le label du thème */
+// }
+

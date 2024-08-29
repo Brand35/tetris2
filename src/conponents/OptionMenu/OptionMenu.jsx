@@ -2,8 +2,6 @@ import React from "react";
 import "./OptionMenu.scss";
 
 const OptionsMenu = ({
-  isMusicPlaying,
-  onMusicToggle,
   onHome,
   activeTheme,
   onThemeToggle,

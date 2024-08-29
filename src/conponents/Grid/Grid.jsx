@@ -1,9 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { randomTetromino, TETROMINOS } from "../pieces/pieces";
+import { randomTetromino } from "../pieces/pieces";
 import NextPiece from "../displayNextPiece/displayNextPiece";
 import "./Grid.scss";
 
-const Grid = ({ onHome,tetriminocolor }) => {
+const Grid = ({ onHome, tetriminoColors }) => {
+  const [gridSize, setGridSize] = useState({ width: 400, height: 800 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 480) {
+        setGridSize({ width: 200, height: 400 }); // Mobile
+      } else if (screenWidth < 768) {
+        setGridSize({ width: 300, height: 600 }); // Tablette
+      } else {
+        setGridSize({ width: 400, height: 800 }); // Bureau
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Appel initial
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const rows = 20;
   const cols = 10;
   const [gameOver, setGameOver] = useState(false);
@@ -17,51 +38,49 @@ const Grid = ({ onHome,tetriminocolor }) => {
     x: Math.floor(cols / 2) - 1,
     y: 0,
   });
-  let startX, startY, distX, distY;
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchStartY, setTouchStartY] = useState(null);
   const [isPaused, setIsPaused] = useState(false); // État de pause
   const handleTouchStart = (e) => {
-    const touchObj = e.changedTouches[0];
-    startX = touchObj.pageX;
-    startY = touchObj.pageY;
+    setTouchStartX(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
   };
 
   const handleTouchMove = (e) => {
+    const touchEndX = e.touches[0].clientX;
+    const touchEndY = e.touches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    // Détecte le mouvement horizontal pour le déplacement gauche/droite
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 30) {
+        movePiece(1); // Droite
+      } else if (deltaX < -30) {
+        movePiece(-1); // Gauche
+      }
+    }
+
+    // Détecte le mouvement vertical pour la descente
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      if (deltaY > 30) {
+        dropPiece(); // Descente rapide
+      }
+    }
+
+    // Empêche l'écran de défiler
     e.preventDefault();
   };
 
-  const handleTouchEnd = (e) => {
-    const touchObj = e.changedTouches[0];
-    distX = touchObj.pageX - startX;
-    distY = touchObj.pageY - startY;
-
-    if (Math.abs(distX) > Math.abs(distY)) {
-      // Déplacement horizontal
-      if (distX > 0) {
-        movePiece(1); // Déplacement à droite
-      } else {
-        movePiece(-1); // Déplacement à gauche
-      }
-    } else {
-      // Déplacement vertical
-      if (distY > 0) {
-        dropPiece(); // Descendre la pièce
-      } else {
-        rotatePieceInGrid(); // Rotation de la pièce
-      }
-    }
-  };
 
   useEffect(() => {
     document.addEventListener("touchstart", handleTouchStart);
     document.addEventListener("touchmove", handleTouchMove);
-    document.addEventListener("touchend", handleTouchEnd);
-
     return () => {
       document.removeEventListener("touchstart", handleTouchStart);
       document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [currentPiece, grid]);
+  }, [touchStartX, touchStartY]);
   function createEmptyGrid() {
     return Array.from({ length: rows }, () => Array(cols).fill(0));
   }
@@ -212,7 +231,7 @@ const Grid = ({ onHome,tetriminocolor }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [currentPiece, grid]);
+  }, [currentPiece, grid, isPaused]);
 
   // Faire tomber la pièce automatiquement
   useEffect(() => {
@@ -267,7 +286,7 @@ const Grid = ({ onHome,tetriminocolor }) => {
     setGameOver(false);
     resetPiece();
   };
- 
+
   return (
     <div className="tetris-container">
       <button className="home-button" onClick={onHome}>
@@ -297,10 +316,7 @@ const Grid = ({ onHome,tetriminocolor }) => {
                     key={`${rowIndex}-${cellIndex}`}
                     className={`grid-cell ${cell !== 0 ? cell : ""}`}
                     style={{
-                      backgroundColor:
-                        cell !== 0
-                          ? `rgba(${TETROMINOS[cell].color}, 0.8)`
-                          : "none",
+                      background: cell !== 0 ? tetriminoColors[cell] : "none",
                     }}
                   ></div>
                 ))}
@@ -309,12 +325,13 @@ const Grid = ({ onHome,tetriminocolor }) => {
           </div>
           {/* Afficher nextPiece uniquement si le jeu n'est pas terminé et que le jeu n'est pas en pause */}
           <div className="next-piece-container">
-            <NextPiece nextPiece={nextPiece} />{" "}
-            {/* Utilisation du composant NextPiece */}
+            <NextPiece
+              nextPiece={nextPiece}
+              tetriminoColors={tetriminoColors}
+            />
           </div>
         </div>
       )}
-      
     </div>
   );
 };

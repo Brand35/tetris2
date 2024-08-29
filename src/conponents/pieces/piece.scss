@@ -1,15 +1,16 @@
 .piece {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .piece-cell {
-    width: 20px;
-    height: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
-  }
-  
-  .block {
-    width: 100%;
-    height: 100%;
-  }
+.piece-cell {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 5px rgb(255, 255, 255);
+
+}
+
+.block {
+  width: 100%;
+  height: 100%;
+}

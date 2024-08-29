@@ -16,7 +16,7 @@ const StartMenu = ({ onStart, onOptions }) => {
       </div>
       <div className="game-rules">
         <div className="rules-container">
-          <h2>HOW TO PLAY</h2>
+          <h1>HOW TO PLAY</h1>
           <p>
             Tetris met le joueur au défi de réaliser des lignes complètes en
             déplaçant des pièces de formes différentes, les tétrominos, qui

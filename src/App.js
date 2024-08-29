@@ -3,6 +3,7 @@ import "./App.scss";
 import Grid from "./conponents/Grid/Grid";
 import StartMenu from "./conponents/StartMenu/StartMenu";
 import OptionsMenu from "./conponents/OptionMenu/OptionMenu";
+import { randomTetromino } from "./conponents/pieces/pieces";
 
 
 function App() {
@@ -10,24 +11,53 @@ function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("start");
   const [activeTheme, setActiveTheme] = useState("default");
-
+const[nextPiece, setNextPiece]= useState(randomTetromino())
   const themes = {
     default: {
       backgroundStyle: {
         background:
           "radial-gradient(50% 50% at 50% 50%, #1DB4F3 0.01%, #097AA9 100%)",
+         
+      },
+      tetriminoColors: {
+        I: "#1f78b4",
+        J: "#33a02c",
+        L: "#fb9a99",
+        O: "#e31a1c",
+        S: "#ff7f00",
+        T: "#6a3d9a",
+        Z: "#b15928",
+       
       },
     },
-    theme1: {
-      backgroundStyle: {
-        background:
-          "radial-gradient(50% 50% at 50% 50%, #1EE682 0%, #0CA759 100%)",
+    neon: {
+      backgroundStyle:{
+      background: "#000000",
+      },
+      tetriminoColors: {
+        I: "#0ff",
+        J: "#1e90ff",
+        L: "#ff4500",
+        O: "#ffff00",
+        S: "#32cd32",
+        T: "#ff1493",
+        Z: "#ff6347",
       },
     },
+  
     theme2: {
       backgroundStyle: {
         background:
           "radial-gradient(50% 50% at 50% 50%, #E71DA4 0%, #A21171 100%)",
+      },
+       tetriminoColors: {
+        I: "#1f78b4",
+        J: "#33a02c",
+        L: "#fb9a99",
+        O: "#e31a1c",
+        S: "#ff7f00",
+        T: "#6a3d9a",
+        Z: "#b15928",
       },
     },
     // Ajoutez plus de thèmes ici
@@ -59,6 +89,8 @@ function App() {
         <Grid
           tetriminoColors={themes[activeTheme].tetriminoColors}
           onHome={handleHome}
+           nextPiece={nextPiece}
+      
         />
       ) : (
         <>

@@ -9,7 +9,6 @@
   z-index: 10;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   background: black;
 }
 
@@ -21,33 +20,6 @@
   flex: 1;
   width: 20px;
   height: 20px;
-  background-color: transparent;
-}
-
-.grid-cell.I {
-  background: #05c0ea;
-}
-
-.grid-cell.J {
-  background: #adef80;
-}
-
-.grid-cell.L {
-  background: #f3b31b;
-}
-
-.grid-cell.O {
-  background: #de1c73;
-}
-
-.grid-cell.S {
-  background: #40b62c;
-}
-
-.grid-cell.T {
-  background: #c34bde;
-}
-
-.grid-cell.Z {
-  background: #a4acc7;
+  border: 1px solid #333;
+  box-sizing: border-box;
 }
