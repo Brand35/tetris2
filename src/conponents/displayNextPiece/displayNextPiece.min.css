@@ -1,1 +1,1 @@
-.next-piece{position:absolute;top:80px;right:-120px;z-index:10;padding:10px;border-radius:5px;background:#000}.grid-row{display:flex}.grid-cell{flex:1;width:20px;height:20px;border:1px solid #333;box-sizing:border-box}
+.next-piece{padding:10px;border-radius:5px;background:rgba(17,16,16,0.949);box-shadow:0px 0px 10px rgba(255,255,255,0.767)}.grid-row{display:flex}.grid-cell{flex:1;width:20px;height:20px;border:1px solid #333;box-sizing:border-box}

@@ -7,4 +7,13 @@
     color: white;
     font-family: Arial, sans-serif;
   }
-  
+  @media (max-width: 360px){
+    .app{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+}

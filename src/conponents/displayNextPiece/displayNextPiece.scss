@@ -1,15 +1,9 @@
 .next-piece {
-  position: absolute;
-  top: 80px;
-  /* Ajustez cette valeur pour la distance du haut */
-  right: -120px;
-  /* Ajustez cette valeur pour la distance du bord droit */
-  /* Fixez cette valeur selon la largeur du conteneur de la grille pour éviter qu'il dépasse */
-  z-index: 10;
+  
   padding: 10px;
   border-radius: 5px;
-  // box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
-  background: rgb(0, 0, 0);
+  background: rgba(17, 16, 16, 0.949);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.767);
 }
 
 .grid-row {
@@ -24,30 +18,9 @@
   box-sizing: border-box;
   // box-shadow: 0 0 5px rgb(255, 255, 255); 
 }
-// $tetrimino-colors: (
-//   'I': #05c0ea,
-//   'J': #adef80,
-//   'L': #f3b31b,
-//   'O': #de1c73,
-//   'S': #40b62c,
-//   'T': #c34bde,
-//   'Z': #a4acc7,
-//   '0': rgba(255, 255, 255, 0) // Case vide
-// );
 
-// // Fonction pour obtenir la couleur d'un Tetrimino
-// @function tetrimino-color($tetrimino) {
-//   @return map-get($tetrimino-colors, $tetrimino);
-// }
-// // // Utilisation des couleurs dans le style des cellules
-// .grid-cell {
-//   // On suppose qu'une classe ou une propriété pour chaque Tetrimino
-//   &.I { background: tetrimino-color('I'); }
-//   &.J { background: tetrimino-color('J'); }
-//   &.L { background: tetrimino-color('L'); }
-//   &.O { background: tetrimino-color('O'); }
-//   &.S { background: tetrimino-color('S'); }
-//   &.T { background: tetrimino-color('T'); }
-//   &.Z { background: tetrimino-color('Z'); }
-// }
+
+  
+  
+
 

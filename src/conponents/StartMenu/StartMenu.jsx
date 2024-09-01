@@ -7,10 +7,18 @@ const StartMenu = ({ onStart, onOptions }) => {
     <div className="start-menu-container">
       <div className="menu-options">
       <img className='title' src={title} alt="" />
-        <button className="menu-button" onClick={onStart}>
+        <button className="menu-button" onClick={onStart}>       
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
           Start
         </button>
         <button className="menu-button" onClick={onOptions}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
           Options
         </button>
       </div>

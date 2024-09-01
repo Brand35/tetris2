@@ -4,29 +4,9 @@ import NextPiece from "../displayNextPiece/displayNextPiece";
 import "./Grid.scss";
 
 const Grid = ({ onHome, tetriminoColors }) => {
-  const [gridSize, setGridSize] = useState({ width: 400, height: 800 });
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 480) {
-        setGridSize({ width: 200, height: 400 }); // Mobile
-      } else if (screenWidth < 768) {
-        setGridSize({ width: 300, height: 600 }); // Tablette
-      } else {
-        setGridSize({ width: 400, height: 800 }); // Bureau
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Appel initial
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
   const rows = 20;
   const cols = 10;
+  const [lineCount, setLineCount] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [grid, setGrid] = useState(createEmptyGrid());
@@ -38,49 +18,9 @@ const Grid = ({ onHome, tetriminoColors }) => {
     x: Math.floor(cols / 2) - 1,
     y: 0,
   });
-  const [touchStartX, setTouchStartX] = useState(null);
-  const [touchStartY, setTouchStartY] = useState(null);
+
   const [isPaused, setIsPaused] = useState(false); // État de pause
-  const handleTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
-    setTouchStartY(e.touches[0].clientY);
-  };
 
-  const handleTouchMove = (e) => {
-    const touchEndX = e.touches[0].clientX;
-    const touchEndY = e.touches[0].clientY;
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-
-    // Détecte le mouvement horizontal pour le déplacement gauche/droite
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (deltaX > 30) {
-        movePiece(1); // Droite
-      } else if (deltaX < -30) {
-        movePiece(-1); // Gauche
-      }
-    }
-
-    // Détecte le mouvement vertical pour la descente
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-      if (deltaY > 30) {
-        dropPiece(); // Descente rapide
-      }
-    }
-
-    // Empêche l'écran de défiler
-    e.preventDefault();
-  };
-
-
-  useEffect(() => {
-    document.addEventListener("touchstart", handleTouchStart);
-    document.addEventListener("touchmove", handleTouchMove);
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("touchmove", handleTouchMove);
-    };
-  }, [touchStartX, touchStartY]);
   function createEmptyGrid() {
     return Array.from({ length: rows }, () => Array(cols).fill(0));
   }
@@ -274,7 +214,7 @@ const Grid = ({ onHome, tetriminoColors }) => {
     for (let i = 0; i < linesCleared; i++) {
       newGrid.unshift(Array(cols).fill(0));
     }
-
+    setLineCount((prev) => prev + linesCleared);
     return { newGrid, linesCleared };
   };
 
@@ -285,14 +225,15 @@ const Grid = ({ onHome, tetriminoColors }) => {
     setLinesCleared(0);
     setGameOver(false);
     resetPiece();
+    setLineCount(0);
   };
 
   return (
     <div className="tetris-container">
-      <button className="home-button" onClick={onHome}>
-        Home
-      </button>
       <div className="controls">
+        <button className="home-button" onClick={onHome}>
+          Home
+        </button>
         <button onClick={togglePause}>{isPaused ? "Resume" : "Pause"}</button>
         <button onClick={resetGame}>Restart</button>
       </div>
@@ -306,8 +247,20 @@ const Grid = ({ onHome, tetriminoColors }) => {
         </div>
       ) : (
         <div className="grid-container">
-          <div className="score">Score: {score}</div>
-          <div className="level">Level: {level}</div>
+          <div className="stats">
+            <div className="game-info">
+            <div className="score">Score: {score}</div>
+            <div className="level">Level: {level}</div>
+            <div className="line-count">Lines: {lineCount}</div>{" "}
+           </div>
+            {/* Afficher nextPiece uniquement si le jeu n'est pas terminé et que le jeu n'est pas en pause */}
+            <div className="next-piece">
+              <NextPiece
+                nextPiece={nextPiece}
+                tetriminoColors={tetriminoColors}
+              />
+            </div>
+            </div>
           <div className="grid">
             {drawGridWithPiece().map((row, rowIndex) => (
               <div key={rowIndex} className="grid-row">
@@ -323,16 +276,18 @@ const Grid = ({ onHome, tetriminoColors }) => {
               </div>
             ))}
           </div>
-          {/* Afficher nextPiece uniquement si le jeu n'est pas terminé et que le jeu n'est pas en pause */}
-          <div className="next-piece-container">
-            <NextPiece
-              nextPiece={nextPiece}
-              tetriminoColors={tetriminoColors}
-            />
-          </div>
+
         </div>
+        
       )}
+       <div className="virtual-controls">
+        <div className="virtual-button" onClick={() => movePiece(-1)}>←</div>
+        <div className="virtual-button" onClick={() => rotatePieceInGrid()}>↻</div>
+        <div className="virtual-button" onClick={() => movePiece(1)}>→</div>
+        <div className="virtual-button" onClick={() => dropPiece()}>↓</div>
+      </div>
     </div>
+    
   );
 };
 

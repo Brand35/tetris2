@@ -1,13 +1,19 @@
 .grid-container {
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.score {
-  font-size: 24px;
-  margin-bottom: 10px;
+.stats{
+ display: flex; 
+  color: black;
+  font-size: 1.5rem;
+  gap: 100px;
+  justify-content: space-between;
+}
+
+.game-info{
+  display: flex;
+  flex-direction: column;
 }
 
 .grid {
@@ -16,7 +22,9 @@
   background-color: black;
   width: 200px;
   height: 400px;
-  box-shadow: 0 0 100px rgb(255, 255, 255);
+  box-shadow: 30px 20px 30px rgb(42, 42, 42);
+  padding: 15px;
+  padding:transparent;
 }
 
 .grid-row {
@@ -24,15 +32,14 @@
   flex: 1;
   transition: transform 0.5s ease;
 }
-
-// .grid-cell {
-//   flex: 1;
-//   border: #000000;
-//   background-color: transparent; // Assurez-vous que les couleurs de fond sont appliquées
-//   // border: 0.5px solid #020202;
-//   // box-shadow: 0 0 5px rgba(255, 0, 0, 0.434); 
-
-// }
+.line-count {
+  color: black;
+}
+.grid-user{
+  display: flex;
+  flex-direction: row;
+  
+}
 
 .pause-menu {
   text-align: center;
@@ -46,8 +53,9 @@
 
 .controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   left: 10px;
+  
 }
 
 .controls button {
@@ -55,11 +63,15 @@
   font-size: 1rem;
   cursor: pointer;
 }
-
-
-
-
-
+.score{
+  border: 1px solid #333;
+}
+.level{
+  border: 1px solid #333;
+}
+.line-count{
+  border: 1px solid #333;
+}
 .home-button {
   position: absolute;
   top: 10px;
@@ -67,9 +79,10 @@
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border: 1px solid #333;
 }
 
-@media (max-width: 480px) {
+
   .grid-container {
     display: flex;
     width: 100%;
@@ -79,4 +92,32 @@
       align-items: end;
     }
   }
-}
+
+  .virtual-controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .virtual-button {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .virtual-button:active {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  

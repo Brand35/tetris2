@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* OptionsMenu.scss */
 .options-menu {
   display: flex;
@@ -53,4 +54,26 @@
   background-color: white;
   transition: .4s;
   border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #000000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.theme-option label {
+  margin-left: 10px;
+  /* Espace entre le switch et le label du thème */
 }
