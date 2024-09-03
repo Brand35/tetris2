@@ -10,8 +10,8 @@ const Grid = ({ onHome, tetriminoColors }) => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [grid, setGrid] = useState(createEmptyGrid());
-  const [level, setLevel] = useState(1); // Niveau initial
-  const [linesCleared, setLinesCleared] = useState(0); // Nombre de lignes effacées au total
+  const [level, setLevel] = useState(1);
+  const [linesCleared, setLinesCleared] = useState(0);
   const [nextPiece, setNextPiece] = useState(randomTetromino());
   const [currentPiece, setCurrentPiece] = useState({
     shape: randomTetromino().shape,
@@ -239,28 +239,27 @@ const Grid = ({ onHome, tetriminoColors }) => {
       </div>
       {gameOver ? (
         <div className="game-over">
-          <h1>Game Over</h1>
+          <h3>Game Over</h3>
         </div>
       ) : isPaused ? (
         <div className="pause-menu">
-          <h1>Paused</h1>
+          <h4>Paused</h4>
         </div>
       ) : (
         <div className="grid-container">
           <div className="stats">
             <div className="game-info">
-            <div className="score">Score: {score}</div>
-            <div className="level">Level: {level}</div>
-            <div className="line-count">Lines: {lineCount}</div>{" "}
-           </div>
-            {/* Afficher nextPiece uniquement si le jeu n'est pas terminé et que le jeu n'est pas en pause */}
+              <div className="score">Score: {score}</div>
+              <div className="level">Level: {level}</div>
+              <div className="line-count">Lines: {lineCount}</div>{" "}
+            </div>
             <div className="next-piece">
               <NextPiece
                 nextPiece={nextPiece}
                 tetriminoColors={tetriminoColors}
               />
             </div>
-            </div>
+          </div>
           <div className="grid">
             {drawGridWithPiece().map((row, rowIndex) => (
               <div key={rowIndex} className="grid-row">
@@ -276,18 +275,23 @@ const Grid = ({ onHome, tetriminoColors }) => {
               </div>
             ))}
           </div>
-
         </div>
-        
       )}
-       <div className="virtual-controls">
-        <div className="virtual-button" onClick={() => movePiece(-1)}>←</div>
-        <div className="virtual-button" onClick={() => rotatePieceInGrid()}>↻</div>
-        <div className="virtual-button" onClick={() => movePiece(1)}>→</div>
-        <div className="virtual-button" onClick={() => dropPiece()}>↓</div>
+      <div className="virtual-controls">
+        <div className="virtual-button" onClick={() => movePiece(-1)}>
+          ←
+        </div>
+        <div className="virtual-button" onClick={() => rotatePieceInGrid()}>
+          ↻
+        </div>
+        <div className="virtual-button" onClick={() => movePiece(1)}>
+          →
+        </div>
+        <div className="virtual-button" onClick={() => dropPiece()}>
+          ↓
+        </div>
       </div>
     </div>
-    
   );
 };
 

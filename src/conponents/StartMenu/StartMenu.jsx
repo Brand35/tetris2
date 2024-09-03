@@ -1,24 +1,16 @@
 import React from "react";
 import "./StartMenu.scss";
-import title from '../asset/title.jpg';
+import title from "../asset/title.jpg";
 
 const StartMenu = ({ onStart, onOptions }) => {
   return (
     <div className="start-menu-container">
       <div className="menu-options">
-      <img className='title' src={title} alt="" />
-        <button className="menu-button" onClick={onStart}>       
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <img className="title" src={title} alt="" />
+        <button className="menu-button" onClick={onStart}>
           Start
         </button>
         <button className="menu-button" onClick={onOptions}>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
           Options
         </button>
       </div>
@@ -30,14 +22,21 @@ const StartMenu = ({ onStart, onOptions }) => {
             déplaçant des pièces de formes différentes, les tétrominos, qui
             défilent depuis le haut jusqu'au bas de l'écran. Les lignes
             complétées disparaissent tout en rapportant des points et le joueur
-            peut de nouveau remplir les cases libérées
+            peut de nouveau remplir les cases libérées<br></br>
+            <kbd>
+              &#8592; deplacer la piece à gauche<br></br>
+            </kbd>
+            <kbd>
+              &#8593; ratation de la piece <br></br>
+            </kbd>
+            <kbd>
+              &#8594; deplacer la piece à droite<br></br>
+            </kbd>
+            <kbd>
+              &#8595; descendre la piéce plus rapidement <br></br>
+            </kbd>
           </p>
-          <kbd>
-            <kbd>ArrowRight</kbd> / <kbd>ArrowLeft</kbd> : Déplacer la pièce
-            <kbd></kbd>
-          </kbd>
         </div>
-
       </div>
     </div>
   );

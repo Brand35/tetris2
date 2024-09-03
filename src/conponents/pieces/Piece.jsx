@@ -11,7 +11,7 @@ const Piece = ({ piece }) => {
             key={cellIndex}
             className="piece-cell"
             style={{
-              backgroundColor: cell !== 0 ? `rgba(${TETROMINOS[cell].color}, 0.8)` : 'transparent',
+              backgroundColor: cell !== 0 ? `rgba(${TETROMINOS[cell].color}, 0.8)` : '',
             }}
           >
             {cell !== 0 && <div className="block"></div>}

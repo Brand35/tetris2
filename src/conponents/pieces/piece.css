@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.piece-cell {
+.piece .cell {
   width: 20px;
   height: 20px;
   box-shadow: 0 0 5px white;

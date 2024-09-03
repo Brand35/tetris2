@@ -1,25 +1,20 @@
-/* OptionsMenu.scss */
 .options-menu {
     display: flex;
     width: 100%;
     height: 100%;
-    // background: var(--green-radial, radial-gradient(50% 50% at 50% 50%, #1EE682 0%, #0CA759 100%));
-    justify-content: center;
-    align-items: center;
-}
-
-
-.option-container .theme-option {
-    height: 70%;
-    width: 80%;
-    flex-direction: column;
-    display: flex;
-    border-radius: 30px;
-    // border: 1px solid var(--Schemes-Scrim, #000);
-    // background: rgba(255, 255, 255, 0.47);
     justify-content: center;
     align-items: center;
 
+    .theme-option {
+        height: 70%;
+        width: 80%;
+        flex-direction: column;
+        display: flex;
+        border-radius: 30px;
+        justify-content: center;
+        align-items: center;
+
+    }
 }
 
 .switch {
@@ -28,12 +23,12 @@
     position: relative;
     width: 60px;
     height: 34px;
-}
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    &input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 }
 
 .slider {
@@ -46,40 +41,41 @@
     background-color: #ccc;
     transition: .4s;
     border-radius: 34px;
-}
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+    &.round {
+        border-radius: 34px;
+
+
+        &:before {
+            border-radius: 50%;
+        }
+    }
+
+    &:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
 }
 
 input:checked+.slider {
     background-color: #000000;
+
+
+    &:before {
+        transform: translateX(26px);
+    }
 }
 
-input:checked+.slider:before {
-    transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
 
 
 .theme-option label {
     margin-left: 10px;
-    /* Espace entre le switch et le label du thème */
 }
-
